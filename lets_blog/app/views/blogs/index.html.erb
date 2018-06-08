@@ -14,7 +14,12 @@
       <div class="text-center">
         <%= link_to "READ MORE", blog_path(blog) %>
       </div>
-      <br>
+      <% if user_signed_in? %>
+        <%= link_to "Show", blog_path(blog), class: "btn btn-primary" %>
+        <%= link_to "Edit", edit_blog_path(blog), class: "btn btn-default" %>
+        <%= link_to "Delete", blog_path(blog), class: "btn btn-danger", data: {:confirm => "Are you sure?"}, method: :delete %>
+      <% end %>
+      <hr />
     </div>
     <% end %>
   </div>
