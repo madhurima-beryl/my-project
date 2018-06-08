@@ -32,7 +32,7 @@ class BlogsController < ApplicationController
   def update
     if @blog.update_attributes(blog_params)
       flash[:notice] = "Successfully updated blog!"
-      redirect_to blog_path(@blogs)
+      redirect_to blog_path(@blog)
     else
       flash[:alert] = "Error updating blog!"
       render :edit
