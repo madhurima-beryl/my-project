@@ -1,7 +1,7 @@
 <div class="col-sm-offset-4 col-sm-4 col-xs-12">
   <h2 class="text-center">Sign up</h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "form"}) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "form"}, validate: true)do |f| %>
     <%= devise_error_messages! %>
 
     <div class="form-group">
@@ -21,7 +21,7 @@
       <%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
     </div>
-    
+
     <!-- Field for image upload -->
     <div class="form-group">
       <%= f.label :avatar do %><br />
@@ -35,6 +35,34 @@
 
 </div>
 <%= render "users/shared/links" %>
+
+<script>
+  $(document).ready(function () {
+  $("#new_user_registration").validate(
+  {
+    debug: true,
+  
+    //error place
+    errorPlacement: function (error, element) {
+    error.insertAfter(element);
+    },
+    
+    //adding rule
+    rules: {  
+      "blog[title]": { required: true},
+      "blog[description]": { required: true}
+    },
+    
+    // error messages
+    messages: {
+      "blog[title]": { required:  "*Title can`t be blank" },
+      "blog[description]": { required: "*Description can`t be blank"}
+    }
+    
+  });
+  });
+  
+</script>
 
 <!-- <h2>Sign up</h2>
 
